@@ -59,6 +59,32 @@ class StorySelectionViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row >= stories[indexPath.section].count {
+            guard let storyType = StoryType(rawValue: indexPath.section) else { return }
+            let story = Story(type: storyType)
+            stories[indexPath.section].append(story)
+            
+            let insertPoint = IndexPath(row: 0, section: indexPath.section)
+            tableView.insertRows(at: [insertPoint], with: .automatic)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row < stories[indexPath.section].count {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.row < stories[indexPath.section].count {
+            stories[indexPath.section].remove(at: indexPath.row)
+            let indexPaths = [indexPath]
+            tableView.deleteRows(at: indexPaths, with: .automatic)
+        }
+    }
     
     fileprivate func setupEmptyStories() {
         stories.append([Story]()) // zombie stories
