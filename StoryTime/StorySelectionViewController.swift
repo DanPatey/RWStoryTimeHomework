@@ -69,7 +69,7 @@ class StorySelectionViewController: UITableViewController {
             tableView.insertRows(at: [insertPoint], with: .automatic)
         }
     }
-    
+        
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if indexPath.row < stories[indexPath.section].count {
             return .delete
