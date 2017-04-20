@@ -14,6 +14,7 @@
 		04E8D52B1A1AAE7400EBF006 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8D5291A1AAE7400EBF006 /* LaunchScreen.xib */; };
 		04E8D5371A1AAE7400EBF006 /* StoryTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8D5361A1AAE7400EBF006 /* StoryTimeTests.swift */; };
 		57910EB31EA81AA600A34FC7 /* StorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57910EB21EA81AA600A34FC7 /* StorySelectionViewController.swift */; };
+		57910EB71EA8505400A34FC7 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57910EB61EA8505400A34FC7 /* Story.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		04E8D5351A1AAE7400EBF006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E8D5361A1AAE7400EBF006 /* StoryTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTimeTests.swift; sourceTree = "<group>"; };
 		57910EB21EA81AA600A34FC7 /* StorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorySelectionViewController.swift; sourceTree = "<group>"; };
+		57910EB61EA8505400A34FC7 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				04E8D5201A1AAE7400EBF006 /* AppDelegate.swift */,
 				04E8D5221A1AAE7400EBF006 /* StoryViewController.swift */,
 				57910EB21EA81AA600A34FC7 /* StorySelectionViewController.swift */,
+				57910EB61EA8505400A34FC7 /* Story.swift */,
 				04E8D5241A1AAE7400EBF006 /* Main.storyboard */,
 				04E8D5271A1AAE7400EBF006 /* Images.xcassets */,
 				04E8D5291A1AAE7400EBF006 /* LaunchScreen.xib */,
@@ -221,6 +224,7 @@
 				04E8D5231A1AAE7400EBF006 /* StoryViewController.swift in Sources */,
 				04E8D5211A1AAE7400EBF006 /* AppDelegate.swift in Sources */,
 				57910EB31EA81AA600A34FC7 /* StorySelectionViewController.swift in Sources */,
+				57910EB71EA8505400A34FC7 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
