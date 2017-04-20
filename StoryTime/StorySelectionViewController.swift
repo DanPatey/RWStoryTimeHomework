@@ -36,11 +36,6 @@ class StorySelectionViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return categoryNames.count
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return stories[section].count + 1
@@ -49,9 +44,27 @@ class StorySelectionViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StoryTimeCell", for: indexPath)
         
-        cell.textLabel?.text = "Add a Story"
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = "Add a Zombie Story"
+        case 1:
+            cell.textLabel?.text = "Add a Vampire Story"
+        case 2:
+            cell.textLabel?.text = "Add a Alien Story"
+        default:
+            break
+        }
 
         return cell
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return categoryNames.count
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return categoryNames[section]
     }
 
     /*
