@@ -128,5 +128,30 @@ class StoryViewController: UIViewController {
   fileprivate func replaceText(_ text: String, withText: String, inString: String) -> String {
     return inString.replacingOccurrences(of: text, with: withText, options: NSString.CompareOptions.literal, range: nil)
   }
-  
+    
+}
+
+extension StoryViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        checkValidationStatus()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn Range: NSRange, replacementString string: String) -> Bool {
+        checkValidationStatus()
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
 }
