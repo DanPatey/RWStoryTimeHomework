@@ -23,6 +23,8 @@ class StorySelectionViewController: UITableViewController {
         stories[StoryType.zombies.rawValue].append(Story(type: .zombies))
         stories[StoryType.vampires.rawValue].append(Story(type: .vampires))
         stories[StoryType.aliens.rawValue].append(Story(type: .aliens))
+        
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source

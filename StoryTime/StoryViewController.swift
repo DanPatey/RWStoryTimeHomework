@@ -33,6 +33,8 @@ class StoryViewController: UIViewController {
   var monsters = "zombies"
   var winStory = "<name> entered the room and saw <number> <monsters>! Without missing a beat, <name> <verb> all of the <monsters>! \n\nPoor <monsters>. Fantastic! \n\n<name> will live to fight another day."
   var loseStory = "<name> entered the room and saw <number> <monsters>! <name> ran down the hall. Sadly, <name> was <verb> by all the <monsters>! \n\nPoor <name>. Better luck next time!"
+    
+    var currentStory: Story?
   
   @IBOutlet weak var backgroundImage: UIImageView! // background image
   @IBOutlet weak var storyTitle: UITextField!
@@ -43,6 +45,11 @@ class StoryViewController: UIViewController {
   @IBOutlet weak var textview: UITextView! // generated story
   @IBOutlet weak var generateStoryButton: UIButton! // generate story
   @IBOutlet weak var numberLabel: UILabel! // label for number
+  @IBAction func save(_ sender: Any) {
+    updateStory()
+    _ = navigationController?.popViewController(animated: true)
+  }
+    
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,6 +58,28 @@ class StoryViewController: UIViewController {
     textview.layer.borderWidth = 1.0
     
     numberLabel.text = "Number (\(currentNumber))"
+    
+    if currentStory != nil {
+        var image: UIImage!
+        if currentStory?.type == StoryType.zombies {
+            image = UIImage(named: "zombies")
+        } else if currentStory?.type == StoryType.vampires {
+            image = UIImage(named: "vampires")
+        } else {
+            image = UIImage(named: "aliens")
+        }
+        backgroundImage.image = image
+        storyTitle.text = currentStory?.title
+        nameText.text = currentStory?.name
+        verbText.text = currentStory?.verb
+        if let monsterCount = currentStory?.number {
+            monsterAmount.value = Float(monsterCount)
+            currentNumber = monsterCount
+        }
+        if let didWin = currentStory?.didWin {
+            monstersWin.isOn = didWin
+        }
+    }
   }
   
   @IBAction func sliderMoved(_ sender: UISlider) {
@@ -71,7 +100,7 @@ class StoryViewController: UIViewController {
       showAlert()
       return
     }
-    textview.text = generateStoryText()
+    populateStory()
   }
   
   func resetStory() {
@@ -116,7 +145,6 @@ class StoryViewController: UIViewController {
       storyText = loseStory
     }
     
-    
     storyText = replaceText("<verb>", withText: verbText.text! , inString: storyText)
     storyText = replaceText("<number>", withText: String(Int(monsterAmount.value)), inString: storyText)
     storyText = replaceText("<name>", withText: nameText.text!, inString: storyText)
@@ -124,11 +152,26 @@ class StoryViewController: UIViewController {
     
     return storyText
   }
+    
+  func populateStory() {
+    if currentStory != nil {
+        updateStory()
+        textview.text = currentStory?.generateStory(monstersWin.isOn)
+    }
+  }
   
   fileprivate func replaceText(_ text: String, withText: String, inString: String) -> String {
     return inString.replacingOccurrences(of: text, with: withText, options: NSString.CompareOptions.literal, range: nil)
   }
     
+  fileprivate func updateStory() {
+    if let name = nameText.text, let title = storyTitle.text, let verb = verbText.text {
+        currentStory?.title = title
+        currentStory?.name = name
+        currentStory?.verb = verb
+        currentStory?.number = Int(monsterAmount.value)
+    }
+  }
 }
 
 extension StoryViewController: UITextFieldDelegate {
